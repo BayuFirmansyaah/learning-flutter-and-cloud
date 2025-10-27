@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Flutter - Materi Pelatihan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: white;
+            color: black;
+        }
+        nav {
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            padding: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            border-bottom: 3px solid black;
+            padding-bottom: 10px;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 1px solid black;
+            padding-bottom: 5px;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+        ul, ol {
+            margin: 15px 0;
+        }
+        li {
+            margin: 8px 0;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border: 1px solid #ddd;
+        }
+        pre {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        .note {
+            border-left: 3px solid black;
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="flutter.html"><strong>Flutter</strong></a> |
+        <a href="cloud.html">Cloud Computing</a>
+    </nav>
+
+    <h1>Panduan Praktis Flutter untuk Windows</h1>
+
+    <h2>Bagian 1: Instalasi Flutter SDK</h2>
+
+    <h3>Langkah 1: Download Flutter SDK</h3>
+    <ol>
+        <li>Buka browser dan kunjungi:
+            <pre>https://flutter.dev/docs/get-started/install/windows</pre>
+        </li>
+        <li>Download file ZIP Flutter SDK versi stabil terbaru</li>
+        <li>Ukuran file sekitar 1-2 GB, pastikan koneksi internet stabil</li>
+    </ol>
+
+    <h3>Langkah 2: Ekstrak Flutter SDK</h3>
+    <ol>
+        <li>Buat folder di lokasi yang mudah diakses (jangan di <code>Program Files</code>):
+            <pre>C:\src\flutter</pre>
+        </li>
+        <li>Ekstrak file ZIP yang sudah didownload ke folder tersebut</li>
+        <li>Pastikan struktur folder menjadi: <code>C:\src\flutter\bin</code></li>
+    </ol>
+
+    <h3>Langkah 3: Tambahkan Flutter ke PATH</h3>
+    <ol>
+        <li>Buka <strong>Settings</strong> Windows</li>
+        <li>Search "Environment Variables" atau "Edit system environment variables"</li>
+        <li>Klik tombol <strong>Environment Variables</strong></li>
+        <li>Di bagian <strong>User variables</strong>, cari variabel <code>Path</code></li>
+        <li>Klik <strong>Edit</strong>, lalu <strong>New</strong></li>
+        <li>Tambahkan:
+            <pre>C:\src\flutter\bin</pre>
+        </li>
+        <li>Klik <strong>OK</strong> pada semua dialog</li>
+    </ol>
+
+    <h3>Langkah 4: Verifikasi Instalasi Flutter</h3>
+    <ol>
+        <li>Buka <strong>Command Prompt</strong> atau <strong>PowerShell</strong></li>
+        <li>Jalankan command:
+            <pre>flutter --version</pre>
+        </li>
+        <li>Output akan menampilkan versi Flutter yang terinstall</li>
+        <li>Jalankan Flutter Doctor untuk cek kebutuhan lain:
+            <pre>flutter doctor</pre>
+        </li>
+    </ol>
+
+    <div class="note">
+        <strong>Catatan:</strong> Flutter Doctor akan menampilkan checklist tools yang diperlukan. Jangan khawatir jika ada tanda [X] atau [!], kita akan setup satu per satu.
+    </div>
+
+    <h2>Bagian 2: Setup Editor (VS Code)</h2>
+
+    <h3>Langkah 1: Install Visual Studio Code</h3>
+    <ol>
+        <li>Download VS Code dari:
+            <pre>https://code.visualstudio.com/</pre>
+        </li>
+        <li>Install dengan settingan default</li>
+        <li>Buka VS Code setelah instalasi selesai</li>
+    </ol>
+
+    <h3>Langkah 2: Install Extension Flutter & Dart</h3>
+    <ol>
+        <li>Buka VS Code</li>
+        <li>Klik icon <strong>Extensions</strong> di sidebar kiri (atau tekan <code>Ctrl+Shift+X</code>)</li>
+        <li>Search "Flutter" dan install extension resmi dari Dart Code</li>
+        <li>Extension Dart akan otomatis terinstall juga</li>
+        <li>Restart VS Code setelah instalasi selesai</li>
+    </ol>
+
+    <h2>Bagian 3: Setup Android Development (Opsional tapi Direkomendasikan)</h2>
+
+    <h3>Langkah 1: Install Android Studio</h3>
+    <ol>
+        <li>Download Android Studio dari:
+            <pre>https://developer.android.com/studio</pre>
+        </li>
+        <li>Install dengan settingan default</li>
+        <li>Saat pertama buka, ikuti wizard setup untuk download Android SDK</li>
+        <li>Proses ini membutuhkan waktu karena download components (~3-5 GB)</li>
+    </ol>
+
+    <h3>Langkah 2: Setup Android SDK</h3>
+    <ol>
+        <li>Buka Android Studio</li>
+        <li>Pilih <strong>More Actions</strong> → <strong>SDK Manager</strong></li>
+        <li>Di tab <strong>SDK Platforms</strong>, pastikan ada minimal satu Android version tercentang</li>
+        <li>Di tab <strong>SDK Tools</strong>, pastikan tercentang:
+            <ul>
+                <li>Android SDK Build-Tools</li>
+                <li>Android SDK Command-line Tools</li>
+                <li>Android Emulator</li>
+                <li>Android SDK Platform-Tools</li>
+            </ul>
+        </li>
+        <li>Klik <strong>Apply</strong> untuk install</li>
+    </ol>
+
+    <h3>Langkah 3: Accept Android Licenses</h3>
+    <ol>
+        <li>Buka Command Prompt atau PowerShell</li>
+        <li>Jalankan:
+            <pre>flutter doctor --android-licenses</pre>
+        </li>
+        <li>Ketik <code>y</code> untuk menerima semua licenses</li>
+    </ol>
+
+    <h3>Langkah 4: Verifikasi Setup Android</h3>
+    <ol>
+        <li>Jalankan lagi:
+            <pre>flutter doctor</pre>
+        </li>
+        <li>Pastikan baris Android toolchain menunjukkan tanda [✓]</li>
+    </ol>
+
+    <h2>Bagian 4: Membuat Proyek Flutter Pertama</h2>
+
+    <h3>Langkah 1: Buat Proyek Baru via Command Line</h3>
+    <ol>
+        <li>Buka Command Prompt atau PowerShell</li>
+        <li>Navigasi ke folder tempat Anda ingin membuat proyek:
+            <pre>cd C:\Users\NamaAnda\Documents</pre>
+        </li>
+        <li>Buat proyek Flutter baru:
+            <pre>flutter create my_first_app</pre>
+        </li>
+        <li>Tunggu proses selesai (1-2 menit)</li>
+        <li>Masuk ke folder proyek:
+            <pre>cd my_first_app</pre>
+        </li>
+    </ol>
+
+    <h3>Langkah 2: Buka Proyek di VS Code</h3>
+    <ol>
+        <li>Jalankan command:
+            <pre>code .</pre>
+        </li>
+        <li>Atau buka VS Code dan pilih <strong>File</strong> → <strong>Open Folder</strong> → pilih folder <code>my_first_app</code></li>
+    </ol>
+
+    <h3>Langkah 3: Lihat Struktur Proyek</h3>
+    <p>Proyek Flutter memiliki struktur sebagai berikut:</p>
+    <pre>my_first_app/
+├── android/          # Konfigurasi Android
+├── ios/              # Konfigurasi iOS
+├── lib/              # Kode Dart Anda (folder utama)
+│   └── main.dart     # File entry point aplikasi
+├── test/             # Unit tests
+├── pubspec.yaml      # Dependencies & metadata proyek
+└── README.md         # Dokumentasi proyek</pre>
+
+    <div class="note">
+        <strong>Penting:</strong> Semua kode aplikasi Anda akan ada di folder <code>lib/</code>, terutama di file <code>main.dart</code>
+    </div>
+
+    <h2>Bagian 5: Menjalankan Aplikasi Flutter</h2>
+
+    <h3>Opsi 1: Jalankan di Chrome (Paling Mudah)</h3>
+    <ol>
+        <li>Pastikan Chrome sudah terinstall</li>
+        <li>Di VS Code, tekan <code>F5</code> atau pilih <strong>Run</strong> → <strong>Start Debugging</strong></li>
+        <li>Pilih <strong>Chrome</strong> sebagai device</li>
+        <li>Tunggu build process (pertama kali agak lama, ~2-3 menit)</li>
+        <li>Aplikasi akan terbuka di browser Chrome</li>
+    </ol>
+
+    <h3>Opsi 2: Jalankan via Command Line</h3>
+    <ol>
+        <li>Buka terminal di VS Code (<code>Ctrl+`</code>)</li>
+        <li>Jalankan:
+            <pre>flutter run -d chrome</pre>
+        </li>
+        <li>Tunggu hingga aplikasi terbuka di browser</li>
+    </ol>
+
+    <h3>Opsi 3: Jalankan di Android Emulator (Jika Sudah Setup)</h3>
+    <ol>
+        <li>Buka Android Studio → <strong>Device Manager</strong></li>
+        <li>Buat virtual device baru atau jalankan yang sudah ada</li>
+        <li>Di VS Code, pilih device Android dari dropdown di pojok kanan bawah</li>
+        <li>Tekan <code>F5</code> untuk run</li>
+        <li>Atau via terminal:
+            <pre>flutter run</pre>
+        </li>
+    </ol>
+
+    <h2>Bagian 6: Memahami Kode Aplikasi Pertama</h2>
+
+    <h3>File main.dart</h3>
+    <p>Buka <code>lib/main.dart</code>. Ini adalah struktur dasar aplikasi Flutter:</p>
+
+    <pre>import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}</pre>
+
+    <p><strong>Penjelasan singkat:</strong></p>
+    <ul>
+        <li><code>main()</code> - Entry point aplikasi</li>
+        <li><code>runApp()</code> - Menjalankan widget root</li>
+        <li><code>MyApp</code> - Widget root aplikasi</li>
+        <li><code>MaterialApp</code> - Wrapper untuk Material Design</li>
+        <li><code>MyHomePage</code> - Halaman utama aplikasi (stateful widget)</li>
+    </ul>
+
+    <h2>Bagian 7: Modifikasi Aplikasi Pertama</h2>
+
+    <h3>Latihan 1: Ubah Teks di Home Page</h3>
+    <ol>
+        <li>Cari baris yang berisi <code>You have pushed the button this many times:</code></li>
+        <li>Ubah teks tersebut menjadi:
+            <pre>'Aplikasi Flutter Pertama Saya:'</pre>
+        </li>
+        <li>Simpan file (<code>Ctrl+S</code>)</li>
+        <li>Aplikasi akan otomatis reload (hot reload)</li>
+    </ol>
+
+    <h3>Latihan 2: Ubah Warna Tema</h3>
+    <ol>
+        <li>Di class <code>MyApp</code>, cari baris:
+            <pre>colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),</pre>
+        </li>
+        <li>Ubah <code>Colors.deepPurple</code> menjadi <code>Colors.blue</code> atau warna lain</li>
+        <li>Simpan dan lihat perubahan warna aplikasi</li>
+    </ol>
+
+    <h3>Latihan 3: Ubah Judul App Bar</h3>
+    <ol>
+        <li>Cari baris:
+            <pre>home: const MyHomePage(title: 'Flutter Demo Home Page'),</pre>
+        </li>
+        <li>Ubah teks title menjadi nama Anda atau judul lain</li>
+        <li>Simpan dan cek perubahan di app bar</li>
+    </ol>
+
+    <h2>Bagian 8: Hot Reload vs Hot Restart</h2>
+
+    <h3>Hot Reload</h3>
+    <ul>
+        <li>Otomatis terjadi saat save file (<code>Ctrl+S</code>)</li>
+        <li>Atau tekan <code>r</code> di terminal</li>
+        <li>Mempertahankan state aplikasi</li>
+        <li>Sangat cepat (~1 detik)</li>
+        <li>Cocok untuk perubahan UI</li>
+    </ul>
+
+    <h3>Hot Restart</h3>
+    <ul>
+        <li>Tekan <code>Ctrl+Shift+F5</code> di VS Code</li>
+        <li>Atau tekan <code>R</code> di terminal</li>
+        <li>Mereset state aplikasi ke awal</li>
+        <li>Lebih lambat dari hot reload (~3-5 detik)</li>
+        <li>Gunakan saat mengubah kode yang mempengaruhi state atau main()</li>
+    </ul>
+
+    <h2>Bagian 9: Debugging Flutter</h2>
+
+    <h3>Menggunakan Print Statements</h3>
+    <ol>
+        <li>Tambahkan di kode Anda:
+            <pre>print('Debug: nilai counter = $_counter');</pre>
+        </li>
+        <li>Output akan muncul di Debug Console VS Code</li>
+    </ol>
+
+    <h3>Breakpoints</h3>
+    <ol>
+        <li>Klik di sebelah kiri nomor baris untuk set breakpoint (titik merah muncul)</li>
+        <li>Run aplikasi dalam debug mode (<code>F5</code>)</li>
+        <li>Eksekusi akan berhenti di breakpoint</li>
+        <li>Inspect variabel di panel <strong>Variables</strong></li>
+    </ol>
+
+    <h3>Flutter DevTools</h3>
+    <ol>
+        <li>Saat aplikasi running, buka link DevTools yang muncul di terminal</li>
+        <li>Atau jalankan:
+            <pre>flutter pub global activate devtools
+flutter pub global run devtools</pre>
+        </li>
+        <li>DevTools menyediakan inspector, performance monitoring, dan memory profiler</li>
+    </ol>
+
+    <h2>Bagian 10: Command-Command Penting Flutter</h2>
+
+    <h3>Informasi & Diagnostik</h3>
+    <pre>flutter doctor             # Cek setup environment
+flutter doctor -v          # Versi verbose
+flutter --version          # Cek versi Flutter
+flutter devices            # List devices yang tersedia</pre>
+
+    <h3>Manajemen Proyek</h3>
+    <pre>flutter create nama_app    # Buat proyek baru
+flutter pub get            # Download dependencies
+flutter pub upgrade        # Update dependencies
+flutter clean              # Bersihkan build files</pre>
+
+    <h3>Menjalankan Aplikasi</h3>
+    <pre>flutter run                # Run di device default
+flutter run -d chrome      # Run di Chrome
+flutter run -d windows     # Run di Windows desktop
+flutter run --release      # Run dalam release mode</pre>
+
+    <h3>Build Aplikasi</h3>
+    <pre>flutter build apk          # Build APK untuk Android
+flutter build appbundle    # Build App Bundle untuk Play Store
+flutter build web          # Build untuk web
+flutter build windows      # Build untuk Windows desktop</pre>
+
+    <h3>Testing & Analisis</h3>
+    <pre>flutter test               # Jalankan unit tests
+flutter analyze            # Analisis kode untuk issues
+flutter format lib/        # Format kode otomatis</pre>
+
+    <h2>Checklist: Anda Berhasil Jika...</h2>
+    <ul>
+        <li>✓ <code>flutter doctor</code> menampilkan minimal 1 device ready</li>
+        <li>✓ Anda bisa membuat proyek baru dengan <code>flutter create</code></li>
+        <li>✓ Aplikasi bisa dijalankan di Chrome atau emulator</li>
+        <li>✓ Hot reload bekerja saat Anda save file</li>
+        <li>✓ Anda bisa mengubah teks dan warna aplikasi</li>
+        <li>✓ Anda memahami struktur folder <code>lib/</code> dan <code>main.dart</code></li>
+    </ul>
+
+    <h2>Troubleshooting Umum</h2>
+
+    <h3>Error: 'flutter' is not recognized</h3>
+    <p><strong>Solusi:</strong> PATH belum di-set dengan benar. Ulangi Langkah 3 di Bagian 1, lalu restart Command Prompt.</p>
+
+    <h3>Error: Android licenses not accepted</h3>
+    <p><strong>Solusi:</strong> Jalankan <code>flutter doctor --android-licenses</code> dan ketik <code>y</code> untuk semua.</p>
+
+    <h3>Error: Unable to locate SDK</h3>
+    <p><strong>Solusi:</strong> Install Android Studio dan jalankan setup wizard untuk download Android SDK.</p>
+
+    <h3>Build gagal dengan error Gradle</h3>
+    <p><strong>Solusi:</strong> Jalankan <code>flutter clean</code> lalu <code>flutter pub get</code>, kemudian build ulang.</p>
+
+    <h3>Hot reload tidak bekerja</h3>
+    <p><strong>Solusi:</strong> Gunakan hot restart (<code>Ctrl+Shift+F5</code>) atau restart aplikasi sepenuhnya.</p>
+
+    <h2>Langkah Selanjutnya</h2>
+    <p>Setelah menguasai dasar-dasar ini, Anda bisa lanjut ke:</p>
+    <ul>
+        <li>Mempelajari widgets dasar Flutter (Text, Button, Container, Column, Row)</li>
+        <li>Membuat layout yang lebih kompleks</li>
+        <li>Navigasi antar halaman</li>
+        <li>State management (setState, Provider, Bloc)</li>
+        <li>Integrasi dengan API</li>
+        <li>Publish aplikasi ke Play Store atau App Store</li>
+    </ul>
+
+    <hr>
+    <nav>
+        <a href="index.html">← Kembali ke Home</a> |
+        <a href="cloud.html">Lanjut ke Cloud Computing →</a>
+    </nav>
+
+    <p><small>Materi Pelatihan Flutter - 2025</small></p>
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Google Cloud - Materi Pelatihan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: white;
+            color: black;
+        }
+        nav {
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            padding: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            border-bottom: 3px solid black;
+            padding-bottom: 10px;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 1px solid black;
+            padding-bottom: 5px;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+        ul, ol {
+            margin: 15px 0;
+        }
+        li {
+            margin: 8px 0;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border: 1px solid #ddd;
+        }
+        pre {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        .note {
+            border-left: 3px solid black;
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+        .warning {
+            border: 2px solid black;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="flutter.html">Flutter</a> |
+        <a href="cloud.html"><strong>Cloud Computing</strong></a>
+    </nav>
+
+    <h1>Panduan Praktis Google Cloud Platform</h1>
+
+    <h2>Bagian 1: Pengenalan Cloud Computing</h2>
+
+    <h3>Apa itu Cloud Computing?</h3>
+    <p>Cloud computing adalah layanan komputasi (server, storage, database, networking, software) yang diakses via internet dengan model pay-as-you-go.</p>
+
+    <h3>Keuntungan Cloud Computing</h3>
+    <ul>
+        <li>Tidak perlu beli & maintain server fisik</li>
+        <li>Skalabilitas mudah (naik-turunkan resource sesuai kebutuhan)</li>
+        <li>Bayar hanya yang dipakai</li>
+        <li>Akses dari mana saja</li>
+        <li>High availability & disaster recovery</li>
+    </ul>
+
+    <h3>Model Layanan Cloud</h3>
+    <ul>
+        <li><strong>IaaS</strong> (Infrastructure as a Service) - Sewa VM, storage, network</li>
+        <li><strong>PaaS</strong> (Platform as a Service) - Platform untuk deploy app tanpa kelola infrastruktur</li>
+        <li><strong>SaaS</strong> (Software as a Service) - Aplikasi siap pakai lewat browser</li>
+    </ul>
+
+    <h3>Google Cloud Platform (GCP)</h3>
+    <p>GCP adalah platform cloud dari Google yang menyediakan 100+ services untuk compute, storage, database, AI/ML, dan lainnya.</p>
+
+    <p><strong>Layanan GCP yang Populer:</strong></p>
+    <ul>
+        <li><strong>Compute Engine</strong> - Virtual machines</li>
+        <li><strong>Cloud Run</strong> - Container serverless (kita pakai ini)</li>
+        <li><strong>App Engine</strong> - PaaS untuk web apps</li>
+        <li><strong>Cloud Storage</strong> - Object storage</li>
+        <li><strong>Cloud Functions</strong> - Serverless functions</li>
+        <li><strong>Cloud SQL</strong> - Managed database</li>
+    </ul>
+
+    <h2>Bagian 2: Setup Akun Google Cloud</h2>
+
+    <h3>Langkah 1: Buat Akun Google Cloud</h3>
+    <ol>
+        <li>Buka browser dan kunjungi:
+            <pre>https://cloud.google.com/</pre>
+        </li>
+        <li>Klik <strong>Get started for free</strong> atau <strong>Try it free</strong></li>
+        <li>Login dengan akun Google Anda (atau buat baru)</li>
+        <li>Pilih negara <strong>Indonesia</strong></li>
+        <li>Setujui Terms of Service</li>
+    </ol>
+
+    <h3>Langkah 2: Verifikasi Akun & Free Trial</h3>
+    <ol>
+        <li>Isi informasi kartu kredit/debit untuk verifikasi
+            <div class="note">
+                <strong>Catatan:</strong> Google memberikan $300 free credit untuk 90 hari. Anda tidak akan dicharge selama masih free trial, dan harus upgrade manual ke paid account.
+            </div>
+        </li>
+        <li>Lengkapi survey singkat tentang penggunaan GCP</li>
+        <li>Klik <strong>Start my free trial</strong></li>
+        <li>Tunggu proses aktivasi (1-2 menit)</li>
+    </ol>
+
+    <h3>Langkah 3: Buka Google Cloud Console</h3>
+    <ol>
+        <li>Setelah aktivasi selesai, Anda akan diarahkan ke Console</li>
+        <li>URL Console:
+            <pre>https://console.cloud.google.com/</pre>
+        </li>
+        <li>Bookmark URL ini untuk akses cepat</li>
+    </ol>
+
+    <h2>Bagian 3: Mengenal Google Cloud Console</h2>
+
+    <h3>Dashboard Console</h3>
+    <p>Ketika pertama kali login, Anda akan melihat:</p>
+    <ul>
+        <li><strong>Navigation Menu</strong> (☰) - Menu utama di kiri atas</li>
+        <li><strong>Project Selector</strong> - Dropdown untuk pilih/ganti project</li>
+        <li><strong>Search Bar</strong> - Cari services atau resources</li>
+        <li><strong>Cloud Shell</strong> - Terminal di browser (icon >_)</li>
+        <li><strong>Notifications</strong> - Bell icon untuk notifikasi</li>
+        <li><strong>Account Menu</strong> - Info akun dan billing</li>
+    </ul>
+
+    <h3>Langkah 1: Buat Project Baru</h3>
+    <ol>
+        <li>Klik <strong>Project Selector</strong> di top bar</li>
+        <li>Klik <strong>NEW PROJECT</strong></li>
+        <li>Isi nama project:
+            <pre>my-first-cloud-project</pre>
+        </li>
+        <li>Biarkan Location default (No organization)</li>
+        <li>Klik <strong>CREATE</strong></li>
+        <li>Tunggu project dibuat (~30 detik)</li>
+        <li>Pilih project yang baru dibuat dari dropdown</li>
+    </ol>
+
+    <div class="note">
+        <strong>Penting:</strong> Setiap project di GCP punya Project ID unik. Project ID ini akan digunakan di command line dan API calls.
+    </div>
+
+    <h3>Langkah 2: Enable Billing untuk Project</h3>
+    <ol>
+        <li>Buka menu ☰ → <strong>Billing</strong></li>
+        <li>Pilih project Anda</li>
+        <li>Link billing account (free trial) ke project</li>
+        <li>Verifikasi bahwa billing sudah active</li>
+    </ol>
+
+    <h3>Langkah 3: Eksplorasi Navigation Menu</h3>
+    <p>Buka menu ☰ dan lihat kategori services:</p>
+    <ul>
+        <li><strong>Compute</strong> - VM, containers, serverless</li>
+        <li><strong>Storage</strong> - Cloud Storage, Filestore</li>
+        <li><strong>Databases</strong> - SQL, NoSQL, caching</li>
+        <li><strong>Networking</strong> - VPC, Load Balancing, CDN</li>
+        <li><strong>Operations</strong> - Logging, Monitoring, Debugging</li>
+    </ul>
+
+    <h2>Bagian 4: Install Google Cloud CLI (gcloud)</h2>
+
+    <h3>Langkah 1: Download & Install gcloud CLI</h3>
+    <ol>
+        <li>Kunjungi:
+            <pre>https://cloud.google.com/sdk/docs/install</pre>
+        </li>
+        <li>Download installer untuk Windows</li>
+        <li>Jalankan installer (GoogleCloudSDKInstaller.exe)</li>
+        <li>Ikuti wizard instalasi dengan setting default</li>
+        <li>Centang opsi "Run gcloud init" di akhir instalasi</li>
+    </ol>
+
+    <h3>Langkah 2: Initialize gcloud</h3>
+    <ol>
+        <li>Setelah instalasi, akan terbuka Command Prompt dengan gcloud init</li>
+        <li>Atau buka Command Prompt baru dan jalankan:
+            <pre>gcloud init</pre>
+        </li>
+        <li>Pilih <strong>Log in with a new account</strong></li>
+        <li>Browser akan terbuka untuk login</li>
+        <li>Login dengan akun Google yang sama dengan GCP</li>
+        <li>Authorize gcloud untuk akses akun Anda</li>
+        <li>Kembali ke terminal, pilih project yang sudah dibuat</li>
+        <li>Pilih default compute region (pilih yang terdekat, misalnya <code>asia-southeast1</code> untuk Singapore)</li>
+    </ol>
+
+    <h3>Langkah 3: Verifikasi Instalasi gcloud</h3>
+    <ol>
+        <li>Cek versi gcloud:
+            <pre>gcloud --version</pre>
+        </li>
+        <li>Cek konfigurasi:
+            <pre>gcloud config list</pre>
+        </li>
+        <li>Cek project aktif:
+            <pre>gcloud config get-value project</pre>
+        </li>
+    </ol>
+
+    <h2>Bagian 5: Deploy Aplikasi Pertama ke Cloud Run</h2>
+
+    <h3>Tentang Cloud Run</h3>
+    <p>Cloud Run adalah layanan serverless untuk deploy container. Keuntungannya:</p>
+    <ul>
+        <li>Tidak perlu kelola server</li>
+        <li>Auto-scaling (0 sampai banyak instance)</li>
+        <li>Bayar per request & compute time</li>
+        <li>Support semua bahasa pemrograman (via Docker)</li>
+    </ul>
+
+    <h3>Langkah 1: Buat Aplikasi Web Sederhana</h3>
+    <ol>
+        <li>Buat folder project:
+            <pre>mkdir hello-cloud
+cd hello-cloud</pre>
+        </li>
+        <li>Buat file <code>app.py</code> dengan isi:
+            <pre>from flask import Flask
+import os
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return '''
+    &lt;html&gt;
+        &lt;body&gt;
+            &lt;h1&gt;Hello from Cloud Run!&lt;/h1&gt;
+            &lt;p&gt;Aplikasi ini berjalan di Google Cloud.&lt;/p&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+    '''
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)</pre>
+        </li>
+        <li>Buat file <code>requirements.txt</code>:
+            <pre>Flask==3.0.0</pre>
+        </li>
+    </ol>
+
+    <h3>Langkah 2: Buat Dockerfile</h3>
+    <ol>
+        <li>Buat file bernama <code>Dockerfile</code> (tanpa extension) di folder yang sama:
+            <pre># Use official Python runtime
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy files
+COPY requirements.txt .
+COPY app.py .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Run the application
+CMD ["python", "app.py"]</pre>
+        </li>
+    </ol>
+
+    <h3>Langkah 3: Enable Cloud Run API</h3>
+    <ol>
+        <li>Jalankan command:
+            <pre>gcloud services enable run.googleapis.com</pre>
+        </li>
+        <li>Tunggu proses enable selesai (~1 menit)</li>
+    </ol>
+
+    <h3>Langkah 4: Deploy ke Cloud Run</h3>
+    <ol>
+        <li>Jalankan command deploy:
+            <pre>gcloud run deploy hello-cloud --source . --region=asia-southeast1 --allow-unauthenticated</pre>
+        </li>
+        <li>Penjelasan command:
+            <ul>
+                <li><code>hello-cloud</code> - nama service</li>
+                <li><code>--source .</code> - deploy dari folder saat ini</li>
+                <li><code>--region</code> - region deployment</li>
+                <li><code>--allow-unauthenticated</code> - bisa diakses publik</li>
+            </ul>
+        </li>
+        <li>Proses deploy akan:
+            <ul>
+                <li>Build Docker image dari source code</li>
+                <li>Upload image ke Google Container Registry</li>
+                <li>Deploy container ke Cloud Run</li>
+            </ul>
+        </li>
+        <li>Tunggu hingga selesai (~3-5 menit untuk pertama kali)</li>
+    </ol>
+
+    <h3>Langkah 5: Akses Aplikasi</h3>
+    <ol>
+        <li>Setelah deploy selesai, akan muncul URL seperti:
+            <pre>https://hello-cloud-xxxxxxxxxx-as.a.run.app</pre>
+        </li>
+        <li>Copy URL tersebut dan buka di browser</li>
+        <li>Anda akan melihat pesan "Hello from Cloud Run!"</li>
+        <li>Selamat! Aplikasi pertama Anda sudah online di cloud 🎉</li>
+    </ol>
+
+    <h3>Langkah 6: Update Aplikasi</h3>
+    <ol>
+        <li>Edit <code>app.py</code>, ubah teks di HTML</li>
+        <li>Deploy ulang dengan command yang sama:
+            <pre>gcloud run deploy hello-cloud --source . --region=asia-southeast1 --allow-unauthenticated</pre>
+        </li>
+        <li>Proses lebih cepat karena cache (~1-2 menit)</li>
+        <li>Refresh browser untuk lihat perubahan</li>
+    </ol>
+
+    <h2>Bagian 6: Monitoring Aplikasi di Cloud Run</h2>
+
+    <h3>Langkah 1: Buka Cloud Run Console</h3>
+    <ol>
+        <li>Buka Console: <code>https://console.cloud.google.com/</code></li>
+        <li>Menu ☰ → <strong>Cloud Run</strong></li>
+        <li>Klik service <strong>hello-cloud</strong></li>
+    </ol>
+
+    <h3>Langkah 2: Lihat Metrics</h3>
+    <p>Di halaman detail service, Anda bisa lihat:</p>
+    <ul>
+        <li><strong>Request count</strong> - Jumlah request ke aplikasi</li>
+        <li><strong>Request latency</strong> - Waktu response</li>
+        <li><strong>Container instance count</strong> - Jumlah container running</li>
+        <li><strong>Billable container instance time</strong> - Usage untuk billing</li>
+    </ul>
+
+    <h3>Langkah 3: Lihat Logs</h3>
+    <ol>
+        <li>Tab <strong>LOGS</strong> di halaman service</li>
+        <li>Akan menampilkan semua logs dari aplikasi</li>
+        <li>Gunakan filter untuk cari logs tertentu</li>
+        <li>Log juga bisa diakses via command:
+            <pre>gcloud run services logs read hello-cloud --region=asia-southeast1</pre>
+        </li>
+    </ol>
+
+    <h3>Langkah 4: Cek Revisions</h3>
+    <ol>
+        <li>Tab <strong>REVISIONS</strong></li>
+        <li>Setiap deploy membuat revision baru</li>
+        <li>Anda bisa rollback ke revision sebelumnya jika ada masalah</li>
+        <li>Traffic bisa di-split antar revisions (untuk A/B testing)</li>
+    </ol>
+
+    <h2>Bagian 7: Kelola Project & Billing</h2>
+
+    <h3>Cek Penggunaan & Cost</h3>
+    <ol>
+        <li>Menu ☰ → <strong>Billing</strong> → <strong>Reports</strong></li>
+        <li>Lihat grafik usage dan cost per service</li>
+        <li>Filter by service untuk lihat cost Cloud Run</li>
+        <li>Setup budget alerts untuk notifikasi jika cost melebihi threshold</li>
+    </ol>
+
+    <div class="note">
+        <strong>Tips Hemat:</strong> Cloud Run free tier mencakup:
+        <ul>
+            <li>2 juta requests per bulan</li>
+            <li>360,000 GB-seconds of memory</li>
+            <li>180,000 vCPU-seconds of compute time</li>
+        </ul>
+        Untuk belajar dan proyek kecil, biasanya masuk free tier.
+    </div>
+
+    <h3>Setup Budget Alert</h3>
+    <ol>
+        <li>Menu ☰ → <strong>Billing</strong> → <strong>Budgets & alerts</strong></li>
+        <li>Klik <strong>CREATE BUDGET</strong></li>
+        <li>Set budget amount (misalnya $10)</li>
+        <li>Set alert thresholds (50%, 90%, 100%)</li>
+        <li>Tambahkan email untuk notifikasi</li>
+        <li>Klik <strong>FINISH</strong></li>
+    </ol>
+
+    <h2>Bagian 8: Clean Up Resources</h2>
+
+    <div class="warning">
+        <strong>Penting:</strong> Untuk menghindari charges yang tidak perlu, hapus resources yang tidak digunakan.
+    </div>
+
+    <h3>Opsi 1: Delete Service</h3>
+    <pre>gcloud run services delete hello-cloud --region=asia-southeast1</pre>
+
+    <h3>Opsi 2: Delete Entire Project</h3>
+    <ol>
+        <li>Menu ☰ → <strong>IAM & Admin</strong> → <strong>Settings</strong></li>
+        <li>Klik <strong>SHUT DOWN</strong></li>
+        <li>Masukkan Project ID untuk konfirmasi</li>
+        <li>Klik <strong>SHUT DOWN</strong></li>
+    </ol>
+
+    <div class="note">
+        <strong>Catatan:</strong> Project yang di-shutdown akan dihapus permanen setelah 30 hari. Dalam periode ini masih bisa di-restore.
+    </div>
+
+    <h2>Bagian 9: Command-Command Penting gcloud</h2>
+
+    <h3>Konfigurasi & Auth</h3>
+    <pre>gcloud auth login                    # Login ke akun Google
+gcloud config list                   # Lihat konfigurasi
+gcloud config set project PROJECT_ID # Set project aktif
+gcloud projects list                 # List semua projects</pre>
+
+    <h3>Cloud Run</h3>
+    <pre>gcloud run deploy                    # Deploy service
+gcloud run services list             # List services
+gcloud run services describe SERVICE # Detail service
+gcloud run services delete SERVICE   # Hapus service
+gcloud run services logs read SERVICE # Lihat logs</pre>
+
+    <h3>Regions & Zones</h3>
+    <pre>gcloud compute regions list          # List regions
+gcloud compute zones list            # List zones
+gcloud config set compute/region REGION # Set default region</pre>
+
+    <h3>APIs & Services</h3>
+    <pre>gcloud services list                 # List enabled APIs
+gcloud services enable API_NAME      # Enable API
+gcloud services disable API_NAME     # Disable API</pre>
+
+    <h3>Help & Info</h3>
+    <pre>gcloud --help                        # General help
+gcloud run --help                    # Help untuk Cloud Run
+gcloud run deploy --help             # Help untuk specific command
+gcloud info                          # Info environment</pre>
+
+    <h2>Bagian 10: Next Steps dengan GCP</h2>
+
+    <h3>Service Lain yang Bisa Dicoba</h3>
+
+    <h4>1. Cloud Storage</h4>
+    <p>Upload dan hosting file statis:</p>
+    <pre>gsutil mb gs://bucket-name           # Buat bucket
+gsutil cp file.txt gs://bucket-name/ # Upload file
+gsutil ls gs://bucket-name/          # List files</pre>
+
+    <h4>2. Cloud SQL</h4>
+    <p>Managed database PostgreSQL atau MySQL</p>
+
+    <h4>3. Cloud Functions</h4>
+    <p>Serverless functions untuk event-driven apps</p>
+
+    <h4>4. Compute Engine</h4>
+    <p>Virtual machines dengan kontrol penuh</p>
+
+    <h4>5. Firebase</h4>
+    <p>Platform untuk mobile & web apps (hosting, database, auth)</p>
+
+    <h3>Deploy Flutter App ke Cloud</h3>
+    <p>Untuk deploy Flutter web app ke GCP:</p>
+    <ol>
+        <li>Build Flutter web:
+            <pre>flutter build web</pre>
+        </li>
+        <li>Upload ke Cloud Storage:
+            <pre>gsutil -m cp -r build/web/* gs://bucket-name/</pre>
+        </li>
+        <li>Set bucket sebagai website:
+            <pre>gsutil web set -m index.html gs://bucket-name/</pre>
+        </li>
+        <li>Set public access:
+            <pre>gsutil iam ch allUsers:objectViewer gs://bucket-name</pre>
+        </li>
+    </ol>
+
+    <h3>Resources Belajar Lanjutan</h3>
+    <ul>
+        <li><strong>Google Cloud Documentation:</strong> https://cloud.google.com/docs</li>
+        <li><strong>Google Cloud Skills Boost:</strong> https://www.cloudskillsboost.google/</li>
+        <li><strong>Codelabs:</strong> https://codelabs.developers.google.com/</li>
+        <li><strong>YouTube:</strong> Google Cloud Tech channel</li>
+    </ul>
+
+    <h2>Checklist: Anda Berhasil Jika...</h2>
+    <ul>
+        <li>✓ Akun Google Cloud sudah aktif dengan free trial</li>
+        <li>✓ Sudah membuat minimal 1 project</li>
+        <li>✓ gcloud CLI terinstall dan terinisialisasi</li>
+        <li>✓ Berhasil deploy aplikasi ke Cloud Run</li>
+        <li>✓ Aplikasi bisa diakses via URL public</li>
+        <li>✓ Bisa melihat logs dan metrics aplikasi</li>
+        <li>✓ Memahami cara update dan rollback deployment</li>
+        <li>✓ Tahu cara monitoring cost & usage</li>
+    </ul>
+
+    <h2>Best Practices untuk Production</h2>
+
+    <h3>Security</h3>
+    <ul>
+        <li>Jangan expose API keys di source code</li>
+        <li>Gunakan Secret Manager untuk credentials</li>
+        <li>Enable authentication untuk service yang sensitif</li>
+        <li>Setup firewall rules dan VPC</li>
+    </ul>
+
+    <h3>Cost Optimization</h3>
+    <ul>
+        <li>Set memory & CPU limits sesuai kebutuhan</li>
+        <li>Gunakan min instances = 0 untuk development</li>
+        <li>Monitor usage dan set budget alerts</li>
+        <li>Hapus resources yang tidak terpakai</li>
+    </ul>
+
+    <h3>Performance</h3>
+    <ul>
+        <li>Pilih region terdekat dengan users</li>
+        <li>Optimize Docker image size</li>
+        <li>Enable CDN untuk static assets</li>
+        <li>Setup auto-scaling yang tepat</li>
+    </ul>
+
+    <h3>Monitoring & Logging</h3>
+    <ul>
+        <li>Setup Cloud Monitoring untuk alerts</li>
+        <li>Gunakan structured logging</li>
+        <li>Setup error reporting</li>
+        <li>Monitor latency dan error rates</li>
+    </ul>
+
+    <h2>Troubleshooting Umum</h2>
+
+    <h3>Error: Billing not enabled</h3>
+    <p><strong>Solusi:</strong> Link billing account ke project di Console → Billing</p>
+
+    <h3>Error: API not enabled</h3>
+    <p><strong>Solusi:</strong> Jalankan <code>gcloud services enable API_NAME</code></p>
+
+    <h3>Deploy gagal: Permission denied</h3>
+    <p><strong>Solusi:</strong> Pastikan sudah login dengan <code>gcloud auth login</code> dan project sudah di-set</p>
+
+    <h3>Container tidak bisa start</h3>
+    <p><strong>Solusi:</strong> Cek logs untuk error. Pastikan app listen di port dari env var <code>PORT</code></p>
+
+    <h3>URL tidak bisa diakses</h3>
+    <p><strong>Solusi:</strong> Pastikan deploy dengan flag <code>--allow-unauthenticated</code></p>
+
+    <hr>
+    <nav>
+        <a href="flutter.html">← Kembali ke Flutter</a> |
+        <a href="index.html">Kembali ke Home</a>
+    </nav>
+
+    <p><small>Materi Pelatihan Google Cloud - 2025</small></p>
+</body>
+</html>
